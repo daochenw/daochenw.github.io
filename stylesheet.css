@@ -1,6 +1,7 @@
 /* latin-ext */
 body {
   -webkit-text-size-adjust: 100%;
+  counter-reset: my-counter;
 }
 
 @font-face {
@@ -134,7 +135,8 @@ span.highlight {
   background-color: #ffffd0;
 }
 
-ul { padding-left: 1.2em; }
+ul { padding-left: 1.2em;
+}
 
 sup {
   vertical-align: baseline;
@@ -146,3 +148,15 @@ font-family: 'Ma Shan Zheng', cursive;
 
 .tab { margin-left: 40px; }
 
+#alert {
+  background-color: #EBF5FB;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.circular--square { border-radius: 50%;}
+
+hcounter::before {
+  counter-increment: my-counter;
+  content: counter(my-counter) ". ";
+}
