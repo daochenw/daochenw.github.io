@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CPSC 536W: Topics in Quantum Computation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+h1 {
+    font-size: 1.5em;
+    text-align: center;
+}
+h2 {
+    font-size: 1.3em;
+}
+body {
+    width: 95%;
+    max-width: 800px;
+    margin: 0 auto 2em auto;
+}
+
+#announcements {
+    background-color: #ffe3e3;
+    padding: 1%;
+    margin: 1%;
+}
+
+#toc li {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 0.1em;
+    margin: 0.1em;
+}
+
+#toc li a, #toc li a:visited { text-decoration: none; color: #1772d0; }
+
+a, a:visited, a:hover, a:active {
+  color: #1772d0;
+}
+
+#sched {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+#sched th, #sched td {
+    padding: 0.1em;
+}
+#sched td { padding-left: 0.5em; padding-right: 0.5em; }
+#sched tr th:nth-child(2) { font-weight: normal; }
+#sched td[colspan]:not([colspan="1"]) { text-align: center; }
+
+#sched #headrow { background-color: #ccc; }
+#sched #headrow th { font-weight: bold; }
+
+#sched tr.tentative td { font-style: italic; }
+
+#sched tbody::before { counter-reset(row-num); }
+#sched tr.lec { counter-increment: row-num; }
+#sched tr.lec::before {
+    display: table-cell;
+    content: counter(row-num);
+    font-weight: bold;
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 0.3em;
+}
+#sched tr:not(.lec)::before {
+    display: table-cell;
+    content: "";
+}
+
+/*#sched tr:not(.due-date):not(.info):not(.gen-info):not(.canceled):not(#headrow)::before {
+#sched tr.lec :first-child::before {
+    display: table-cell;
+    counter-increment: row-num;
+    content: counter(row-num);
+    padding-right: 0.3em;
+    text-align: right;
+}
+#sched tr:not(.lec)::before {
+    display: table-cell;
+    content: "";
+}*/
+
+#sched tr:nth-child(odd )          { background-color: #fff; }
+#sched tr:nth-child(even)          { background-color: #eee; }
+#sched td[rowspan]:not([rowspan="1"]) { background-color: #f7f7f7; }
+#sched tr:nth-child(odd ).due-date { background-color: #fcc; }
+#sched tr:nth-child(even).due-date { background-color: #ebb; }
+#sched tr:nth-child(odd ).info     { background-color: #bbf; }
+#sched tr:nth-child(even).info     { background-color: #aae; }
+#sched tr:nth-child(odd ).gen-info     { background-color: #eef; }
+#sched tr:nth-child(even).gen-info     { background-color: #ddf; }
+#sched tr:nth-child(odd ).canceled { background-color: #efe; }
+#sched tr:nth-child(even).canceled { background-color: #ded; }
+    </style>
+    
+<link rel="icon" type="image/x-icon" href="images/ubc.ico">
+</head>
+
+<body>
+    <h1>CPSC 536W: Topics in Quantum Computation (2023W2)</h1>
+    <strong>Instructor:</strong> <a href="https://wdaochen.com/">Daochen Wang</a>: wdaochen@cs.ubc.ca
+    <br>
+    <strong>Term:</strong> 2024 Winter Term 2 (January 6th 2025 to April 8th 2025)
+    <br>
+    <strong>Logistics:</strong> Monday and Wednesday, 9:30am - 11am,
+    MCLD-Floor 2-Room 2014
+    <br>
+    <strong>Office hour:</strong> Friday 2pm - 3pm
+    <br>
+    <strong>Assessment:</strong> 2 homework assignments (30%) and 1 project (70%)
+    <br>
+    <strong>Registration:</strong> CS students use: CPSC 536W 201; Non-CS students use: CPSC 536W 2W1
+    <br>
+    <!-- ICICS X539. -->
+    <!-- <strong>TA:</strong> <a href="https://sites.google.com/view/hamedshirzad/home">Hamed Shirzad</a>.
+
+    <strong>Office hours:</strong> Wednesdays 11am-12pm and Fridays 2pm-3pm, ICICS X539 or Zoom (link on Piazza).
+    <br/><span style="visibility: hidden"><strong>Office hours:</strong> </span>Or ask after class, or on Piazza, or request another time (<a href="https://www.cs.ubc.ca/local/phpicalendar/day.php?cal[]=Danica_Sutherland">potential availability calendar</a> if helpful).
+    <br/>
+    <strong><a href="https://canvas.ubc.ca/courses/123461/external_tools/201?display=borderless">Piazza</a></strong> (or <a href="https://piazza.com/ubc.ca/winterterm12023/cpsc532d">more-direct link</a>); <a href="https://canvas.ubc.ca/courses/123461">Canvas</a>; <a href="https://canvas.ubc.ca/courses/123461/external_tools/46711?display=borderless">Gradescope</a>.
+    <br/>
+    <p>
+    Previously offered in <a href="../22w1/">in 2022W1</a> and (with the name 532S) <a href="../../532S/22/">in 2021W2</a>; this instance will be broadly similar.
+    </p> -->
+
+    <!-- <ul id="toc"> -->
+        <!-- <li><a href="#schedule">schedule</a></li>
+        <li><a href="#logistics">logistics</a></li> -->
+        <!-- <li><a href="#overview">overview</a></li>
+        <li><a href="#prereqs">prerequisites</a></li>
+        <li><a href="#resources">resources</a></li> -->
+    <!-- </ul> -->
+
+    <section id="schedule">
+        <h2>Schedule</h2>
+          <!-- Italicized entries are tentative.
+          The book acronyms are described <a href="#book-links">here</a>.
+          As a general rule:
+          <ul>
+              <li>SSBD is the easiest to understand but sometimes over-simplified (sometimes in ways that make it incorrect);</li>
+              <li>MRT can be written in a more opaque way, but is at about the level of detail we mostly use;</li>
+              <li>Bach is maybe similar to MRT, in my opinion easier to follow but has a somewhat different focus;</li>
+              <li>Zhang is usually at a more advanced, and often more abstract, level than we mostly cover.</li>
+          </ul> -->
+        <table id="sched">
+        <thead>
+            <tr id="headrow"><th colspan="2">Date</th><th>Topic</th><th>Supplements</th></tr>
+        </thead>
+        <tbody>
+            <tr class="lec"><th>Mon</th><th>Jan 6</th><td>intro to quantum computing</td><td></td></tr>
+            <tr class="info"><th>Fri</th><th>Jan 17</th><td>add/drop deadline</td><td></td></tr>
+        </tbody>
+        </table>
+    </section>
+
+    <!-- <section id="logistics">
+        <h2>Logistics</h2>
+        <p>The course meets in person in Swing 210, with possible rare exceptions (e.g. if I get sick but can still teach, I'll move it online). Note that this room does not have a recording setup.</p>
+        <p>Grading scheme: 70% assignments, 30% final.</p>
+        <p>
+            There will be four or five written assignments through the term; answers should be written in LaTeX, and handed in on Gradescope.
+            There will also be a small number (one or two) of assignments that involve reading a paper, reacting to it, and poking at it slightly further; details to come.
+        </p>
+    </section> -->
+    
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>This is a <em>graduate-level topics</em> course in quantum computation but assumes <em>no prior knowledge</em> of quantum information. The 
+        main focus will be on quantum algorithms and complexity theory, in particular, super-polynomial speedups or the lack thereof. 
+        </p>
+        
+        <p>Tentative list of topics:
+        <ul>
+            <li>CHSH game</li>
+            <li>Query and Turing models of computation</li>
+            <li>Simon's problem: quantum upper bound, classical lower bound
+            <li>Factoring: Shor's algorithm</li>
+            <li>Hidden subgroup problem</li>
+            <!-- <li>Grover's algorithm and its applications to the collision problem, graph problems, and dynamic programming</li> -->
+            <li>Glued-trees problem</li>
+
+            <li>Ground state preparation problem</li>
+
+            <li>Yamakawa-Zhandry problem</li>
+
+            <!-- <li>Polynomial method and its application to symmetric functions -->
+            <li>Quantum lower bound methods: adversary method and recording query method  </li>
+            <li>No super-polynomial speedup for total Boolean functions</li>
+            <li>OSSS inequality and the Aaronson-Ambainis conjecture</li>
+            <li>Interesting papers that I read as the course progresses</li>
+          </ul>
+        </p>
+    </section> 
+
+    <section id="project">
+        <h2>Project</h2>
+        <p>
+            You will work in a team of 1-2 to write a paper on a topic of your choice from the quantum algorithms literature. In addition to reviewing previous work on your topic, you should aim to identify new research directions. Outstanding projects will also include some original research contributions. You should submit a project proposal and a final paper, as well as give a talk on the topic. A list of candidate topics, along with some commentary, will be released on [TBC]. (You will not be disadvantaged if you choose a topic outside this list.)
+        </p>
+        <p>Dates and guidelines (adapted from <a href="https://www.cs.umd.edu/class/fall2022/cmsc657/project.html">here</a>):</p>
+        <ul>
+            <li>Proposal (worth 10%, due [TBC]): 1-2 pages summarizing the topic, a  timeline, and a list of selected references. </li>
+            <li>Final paper (worth 50%, due [TBC]): a paper covering your chosen topic. Original research is encouraged but not expected. Half of the marks will be for scientific content and the other half will be for presentation. The paper should be at most 12 pages in length excluding references.</li>
+            <li>Talk (worth 40%, due [TBC]): a 30-minute talk on your project towards the end of the semester.</li>
+        </ul>
+        Both the proposal and final paper should be written in Latex using <a href="https://www.overleaf.com/read/vhfkynqtggbs#54d939">this template</a> without any formatting changes.
+    </section>
+    </section>
+
+    <section id="prereqs">
+        <h2>Prerequisites</h2>
+        <p>
+            Prior knowledge of quantum information is <em>not</em> a prerequisite. The main prerequisites are linear algebra (e.g., <a href="https://personal.math.ubc.ca/~anstee/math223/math223.html">MATH 223</a>, <a href="https://ubcmath.github.io/MATH307/index.html">MATH 307</a>, or <a href="https://www.cs.ubc.ca/~jbosch/courses/2017-18/CPSC302/">CPSC 302</a>) and mathematical maturity (e.g., from taking a third-year math course). Some prior knowledge of probability, group theory, analysis of algorithms, discrete math, optimization, or quantum mechanics is helpful but could also be picked up during the course. 
+        </p>
+    </section>
+
+    <section id="resources">
+        <h2>Resources</h2>
+        <p>The primary references for this course are <a href="https://wdaochen.com/teaching/lecture_notes_071224.pdf">my lecture notes</a> and a set of excellent lecture notes on quantum algorithms by Andrew M. Childs: <a href="https://www.cs.umd.edu/~amchilds/qa/">[AMC]</a>.
+            <!-- Books that the course will definitely pull from:</p>
+        <ul id="book-links">
+            <li><b>[SSBD]</b> <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/">Understanding Machine Learning: From Theory to Algorithms</a> (Shai Shalev-Shwartz, Shai Ben-David; 2014) – a very readable (free) book that covers a significant portion of our material</li>
+            <li><b>[MRT]</b> <a href="https://cs.nyu.edu/~mohri/mlbook/">Foundations of Machine Learning</a> (Mehryar Mohri, Afshin Rostamizadeh, Ameet Talwakar; second edition 2018) – free textbook, a little more "graduate-oriented", that covers certain topics (especially Rademacher complexity) in more depth</li>
+        </ul>
+        <p>New books where I may or may not pull from sections, TBD:</p>
+        <ul>
+            <li><b>[Bach]</b> <a href="https://www.di.ens.fr/~fbach/ltfp_book.pdf">Learning Theory from First Principles</a> (Francis Bach; 2023 draft)</li>
+            <li><b>[Zhang]</b> <a href="https://tongzhang-ml.org/lt-book/lt-book.pdf">Mathematical Analysis of Machine Learning Algorithms</a> (Tong Zhang; 2023 pre-publication version)</li>
+        </ul>
+        <p>Some other points of view you might like:</p>
+        <ul>
+            <li><a href="http://www.econ.upf.edu/~lugosi/mlss_slt.pdf">Introduction to Statistical Learning Theory</a> (Olivier Bousquet, Stéphane Boucheron, Gábor Lugosi; 2003) – 40-page survey of classics</li>
+            <li><a href="https://www.ams.org/journals/bull/2002-39-01/S0273-0979-01-00923-5/S0273-0979-01-00923-5.pdf">On the Mathematical Foundations of Learning</a> (Felipe Cucker, Steve Smale; 2001) – 50-page survey of classics</li>
+            <li><a href="https://direct-mit-edu.eu1.proxy.openathens.net/books/book/2604/An-Introduction-to-Computational-Learning-Theory">An Introduction to Computational Learning Theory</a> (Michael Kearns, Umesh Vazirani; 1994; that link should get you a copy with a UBC login) – a book from a much more CS theory point of view. A nice complement to what we'll cover in this course.</li>
+        </ul>
+
+        <p>If you need to refresh your linear algebra or other areas of math:</p>
+        <ul>
+            <li><a href="https://mml-book.github.io/book/mml-book.pdf">Mathematics for Machine Learning</a> (Marc Deisenroth, Aldo Faisal, Cheng Soon Ong; 2020) – a nice overview of basics.</li>
+        </ul>
+
+        <p>Measure-theoretic probability is <em>not</em> required for this course, but there are instances and related areas where it could be helpful:</p>
+        <ul>
+            <li><a href="https://vannevar.ece.uw.edu/techsite/papers/documents/UWEETR-2006-0008.pdf">A Measure Theory Tutorial (Measure Theory for Dummies)</a> (Maya Gupta) – 5 pages, just the basics</li>
+            <li><a href="https://www.maths.usyd.edu.au/u/tillmann/2010-measure/MT-Notes.pdf">Measure Theory, 2010</a> (Greg Hjorth) – 110 pages but comes recommended as both thorough and readable</li>
+            <li><a href="https://link.springer.com/book/10.1007/978-0-8176-8409-9">A Probability Path</a> (Sidney Resnick) – frequently recommended textbook aimed at non-mathematicians to learn it in detail, but it's a full-semester textbook scale of detail; available if you log in via UBC</li>
+            <li>There are also lots of other places, of course; e.g. the probability textbooks by Billingsley, Klenke, and Williams are (I think) classics.</li>
+        </ul>
+
+        <p>Similar courses:</p>
+        <ul>
+            <li><a href="https://www.cs.ubc.ca/~nickhar/F18-531/">UBC CPSC 531H: Machine Learning Theory</a> (Nick Harvey, not taught for a while)</li>
+            <li><a href="http://www.mit.edu/~9.520/fall19/">MIT 9.520: Statistical Learning Theory and Applications</a> (Tomaso Poggio, Loreno Rosasco, Alexander Rakhlin, Ardrzej Banburski)</li>
+            <li><a href="https://ttic.uchicago.edu/~nati/Teaching/TTIC31120/2016/">TTIC 31120: Computational and Statistical Learning Theory</a> (Nati Srebro)</li>
+            <li><a href="http://www.cs.cmu.edu/~ninamf/courses/806/10-806-index.html">CMU 10-806: Foundations of Machine Learning and Data Science</a> (Nina Balcan, Avrim Blum)</li>
+            <li><a href="http://maxim.ece.illinois.edu/teaching/fall15b/">UIUC ECE 598MR: Statistical Learning Theory</a> (Maxim Raginsky)</li>
+            <li><a href="http://web.stanford.edu/class/stats214/">Stanford STATS214: Machine Learning Theory</a> (Tengyu Ma)</li>
+        </ul>
+    </section> -->
+</body>
+<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr>
+      <td style="padding:0px">
+        <br>
+        <p style="text-align:right;font-size:small;">
+          <br>
+          Template from <a href="https://djsutherland.ml/">Danica Sutherland</a>
+        </p>
+      </td>
+    </tr>
+  </tbody></table>
+</html>
