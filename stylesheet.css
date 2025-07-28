@@ -156,7 +156,27 @@ font-family: 'Ma Shan Zheng', cursive;
 
 .circular--square { border-radius: 50%;}
 
-hcounter::before {
+/* hcounter::before {
   counter-increment: my-counter;
   content: counter(my-counter) ". ";
+} */
+
+/* reset both counters at the start of each section */
+.preprints {
+  counter-reset: preprint;
+}
+.published {
+  counter-reset: published;
+}
+
+/* number the preprints */
+.preprints hcounter::before {
+  counter-increment: preprint;
+  content: counter(preprint) ". ";
+}
+
+/* number the published papers */
+.published hcounter::before {
+  counter-increment: published;
+  content: counter(published) ". ";
 }
