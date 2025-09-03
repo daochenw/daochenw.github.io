@@ -180,3 +180,8 @@ font-family: 'Ma Shan Zheng', cursive;
   counter-increment: published;
   content: counter(published) ". ";
 }
+
+mark {
+  background-color: #e6f0ff;
+  color: black;
+}
