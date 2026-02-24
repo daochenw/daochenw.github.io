@@ -185,3 +185,11 @@ mark {
   background-color: #EBF5FB;
   color: black;
 }
+
+.student {
+  color: rgb(200, 100, 0);
+}
+
+.student:hover {
+  color: #f09228;
+}
